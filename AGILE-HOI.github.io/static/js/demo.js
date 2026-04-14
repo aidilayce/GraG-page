@@ -669,8 +669,14 @@ export function initDemoViewer({ containerId = 'viewer', galleryId = 'thumbnailG
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.screenSpacePanning = false;
-    controls.minDistance = 1;
-    controls.maxDistance = 100;
+    controls.enableZoom = true;
+    controls.zoomSpeed = 0.45;
+    controls.minDistance = 0.08;
+    controls.maxDistance = 6.0;
+    controls.enablePan = true;
+    if ('zoomToCursor' in controls) {
+        controls.zoomToCursor = true;
+    }
     // Enable auto-rotate by default so the scene gently spins on load. Can be toggled in the UI.
     controls.autoRotate = false;
     controls.autoRotateSpeed = 2.5;

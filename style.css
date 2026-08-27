@@ -244,6 +244,8 @@ body {
   font-size: 20px;
   line-height: 1.7;
   margin-bottom: 40px;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .figure-caption {

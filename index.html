@@ -17,10 +17,7 @@
       <li><a href="#interactive-viewer">Interactive 3D Visualizer</a></li>
       <li><a href="#abstract">Abstract</a></li>
       <li><a href="#qualitative-comparison">Qualitative Comparison</a></li>
-      <li><a href="#approach">Approach</a></li>
-      <li class="toc-subsection"><a href="#stage-1">Stage 1</a></li>
-      <li class="toc-subsection"><a href="#stage-2">Stage 2</a></li>
-      <li class="toc-subsection"><a href="#stage-3">Stage 3</a></li>
+      <li><a href="#video">Video</a></li>
       <li><a href="#acknowledgements">Acknowledgements</a></li>
     </ul>
   </div>
@@ -30,19 +27,20 @@
       <img src="./assets/logos/mpi.png" alt="MPI logo">
       <img src="./assets/logos/sic-logo.webp" alt="Saarland Informatics Campus logo">
       <img src="./assets/logos/via_logo_dark.ZdzNzFB3_w9iYA.svg" alt="VIA logo">
+      <img src="./assets/logos/google-logo.svg" alt="Google logo">
     </div>
     <div class="hero-text"><strong>Grasp in Gaussians</strong></div>
     <div class="sub-hero-text">Fast Monocular Reconstruction of Dynamic Hand–Object Interactions</div>
 
     <div class="authors">
       <div class="author-line">
-        <span class="author-name">Ayce Idil Aytekin<sup>1,2</sup></span>
-        <span class="author-name">Xu Chen<sup>3</sup></span>
-        <span class="author-name">Zhengyang Shen<sup>3</sup></span>
-        <span class="author-name">Thabo Beeler<sup>3</sup></span>
-        <span class="author-name">Helge Rhodin<sup>1,2,4</sup></span>
-        <span class="author-name">Rishabh Dabral<sup>1,2</sup></span>
-        <span class="author-name">Christian Theobalt<sup>1,2</sup></span>
+        <span class="author-name"><a href="https://aidilayce.github.io/" target="_blank" rel="noreferrer">Ayce Idil Aytekin</a><sup>1,2</sup></span>
+        <span class="author-name"><a href="https://xuchen-ethz.github.io/" target="_blank" rel="noreferrer">Xu Chen</a><sup>3</sup></span>
+        <span class="author-name"><a href="https://www.linkedin.com/in/zhengyang-shen-8ab07218a/" target="_blank" rel="noreferrer">Zhengyang Shen</a><sup>3</sup></span>
+        <span class="author-name"><a href="https://thabobeeler.com/" target="_blank" rel="noreferrer">Thabo Beeler</a><sup>3</sup></span>
+        <span class="author-name"><a href="https://ekvv.uni-bielefeld.de/pers_publ/publ/PersonDetail.jsp?personId=459844196&amp;lang=EN" target="_blank" rel="noreferrer">Helge Rhodin</a><sup>1,2,4</sup></span>
+        <span class="author-name"><a href="https://rishabhdabral.github.io/" target="_blank" rel="noreferrer">Rishabh Dabral</a><sup>1,2</sup></span>
+        <span class="author-name"><a href="https://people.mpi-inf.mpg.de/~theobalt/" target="_blank" rel="noreferrer">Christian Theobalt</a><sup>1,2</sup></span>
       </div>
       <div class="affiliations-grid">
         <div class="affiliation-item"><sup>1</sup> Max Planck Institute for Informatics, Saarland Informatics Campus, Saarbrücken, Germany</div>
@@ -52,9 +50,13 @@
       </div>
     </div>
 
+    <div class="venue">
+      <img class="venue-logo" src="./assets/logos/siggasia_logo.png" alt="SIGGRAPH Asia 2026 logo">
+      <span class="venue-text">ACM SIGGRAPH Asia 2026 Conference Track</span>
+    </div>
+
     <div class="quick-links">
-      <a href="./Grasping_in_Gaussians__GraG___mainpaper_.pdf" target="_blank">[pdf]</a>
-      <a href="./Grasping_in_Gaussians__GraG____Supplementary.pdf" target="_blank">[supp]</a>
+      <a href="./GraG.pdf" target="_blank">[pdf]</a>
       <a href="https://arxiv.org/abs/2604.12929" target="_blank">[arxiv]</a>
       <a href="https://github.com/aidilayce/GraG" target="_blank">[code]</a>
     </div>
@@ -80,9 +82,7 @@
 
     <div class="tagline" id="abstract">Abstract.</div>
     <div class="section">
-      We present <strong>Grasp in Gaussians (GraG)</strong>, a fast and robust method for reconstructing dynamic 3D hand-object interactions from a single monocular video. Unlike recent approaches that optimize heavy neural representations, our method focuses on tracking the hand and the object efficiently, once initialized from pretrained large models. Our key insight is that accurate and temporally stable hand-object motion can be recovered using a compact Sum-of-Gaussians (SoG) representation, revived from classical tracking literature and integrated with generative Gaussian-based initializations. We initialize object pose and geometry using a video-adapted SAM3D pipeline, then convert the resulting dense Gaussian representation into a lightweight SoG via subsampling. This compact representation enables efficient and fast tracking while preserving geometric fidelity.
-      For the hand, we adopt a complementary strategy: starting from off-the-shelf monocular hand pose initialization, we refine hand motion using simple yet effective 2D joint and depth alignment losses, avoiding per-frame refinement of a detailed 3D hand appearance model while maintaining stable articulation.
-      Extensive experiments on public benchmarks demonstrate that GraG reconstructs temporally coherent hand-object interactions on long sequences <strong>6.4x faster</strong> than prior work while improving object reconstruction by <strong>13.4%</strong> and reducing hand per-joint position error by over <strong>65%</strong>.
+      We present <strong>Grasp in Gaussians (GraG)</strong>, a fast and robust method for reconstructing dynamic 3D hand–object interactions from a single monocular video. Unlike recent approaches that optimize heavy neural representations, our method focuses on tracking the hand and the object efficiently, once initialized from pretrained large models. Our key insight is that, given strong pretrained object and hand priors, accurate and temporally stable hand–object motion can be recovered using a compact Sum-of-Gaussians (SoG) representation, revived from classical tracking literature and integrated with generative Gaussian-based initializations. We initialize object pose and geometry using a video-adapted SAM3D pipeline, then convert the resulting dense Gaussian representation into a lightweight SoG via subsampling. This compact representation enables efficient and fast tracking while preserving geometric fidelity, with the pretrained priors and simple geometric/contact losses providing accurate hand-object placement. For the hand, we adopt a complementary strategy: starting from off-the-shelf monocular hand pose initialization, we refine hand motion using simple yet effective 2D joint, silhouette, depth, and contact losses, avoiding per-frame refinement of a detailed 3D hand appearance model while maintaining stable articulation. Extensive experiments on public benchmarks demonstrate that GraG reconstructs temporally coherent hand-object interactions on long sequences <strong>4.4x--38.9x</strong> faster than prior work while preserving temporally coherent hand-object motion.
     </div>
 
     <div class="tagline" id="qualitative-comparison">Qualitative Comparison.</div>
@@ -112,43 +112,31 @@
       <div class="sequence-selector comparison-selector" id="comparison-sequence-selector"></div>
     </div>
 
-    <div class="tagline" id="approach">Approach.</div>
-    <img class="approach-figure" src="./assets/images/method.png" alt="Method figure">
-    <div class="section method-summary">
-      <strong>Method Overview.</strong>
-      Given a monocular video, we recover per-frame hand-object poses and geometry. We first preprocess the video to obtain masks, an initial hand trajectory, per-frame hand-object contact flags, pointmaps, and camera intrinsics/extrinsics. Stage 1 reconstructs a canonical object with MV-SAM3D by selecting keyframes and decoding shape tokens into a dense Gaussian asset. Stage 2 estimates per-frame object pose and scale by adapting SAM3D to videos with a frozen canonical shape and temporal guidance. Stage 3 refines hand and object motion using an explicit tracking objective by sparsifying dense Gaussians into a compact SoG and performing occlusion-aware alignment with lightweight priors.
-    </div>
-
-    <div class="stage-block" id="stage-1">
-      <div class="section-subtitle">Stage 1: Keyframe Selection and Object Reconstruction.</div>
-      <div class="stage-row">
-        <img class="stage-media" src="./assets/gif/stage1.gif" alt="Stage 1 animation">
-        <div class="stage-text">
-          We select informative keyframes and use MV-SAM3D to reconstruct a canonical high-quality Gaussian object representation from monocular observations. 
-          These views provide complementary visual cues for accurate shape reconstruction compared to single-frame reconstruction.
-        </div>
+    <div class="tagline" id="video">Video.</div>
+    <div class="hero-video" id="grag-video-wrap">
+      <video id="grag-video" playsinline preload="metadata" poster="./assets/images/video_poster.jpg">
+        <source src="./assets/GraG_supp_video_camready.mp4" type="video/mp4">
+      </video>
+      <button class="vc-bigplay" type="button" aria-label="Play video">
+        <svg viewBox="0 0 24 24"><path d="M8 5.14v13.72L19 12 8 5.14z"></path></svg>
+      </button>
+      <div class="vc-bar">
+        <button class="vc-btn vc-play" type="button" aria-label="Play">
+          <svg viewBox="0 0 24 24"><path d="M8 5.14v13.72L19 12 8 5.14z"></path></svg>
+        </button>
+        <input class="vc-seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Seek">
+        <span class="vc-time">0:00 / 0:00</span>
+        <button class="vc-btn vc-mute" type="button" aria-label="Mute">
+          <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05A4.47 4.47 0 0 0 16.5 12zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path></svg>
+        </button>
+        <button class="vc-btn vc-fs" type="button" aria-label="Fullscreen">
+          <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>
+        </button>
       </div>
     </div>
-
-    <div class="stage-block" id="stage-2">
-      <div class="section-subtitle">Stage 2: Temporally Stable Object Pose Estimation.</div>
-      <div class="stage-row">
-        <img class="stage-media" src="./assets/gif/stage2.gif" alt="Stage 2 animation">
-        <div class="stage-text">
-          We adapt SAM3D to estimate object poses throughout the video. With the canonical shape fixed, we estimate per-frame object pose and scale over the full video with temporal guidance for stable long-range tracking.
-        </div>
-      </div>
-    </div>
-
-    <div class="stage-block" id="stage-3">
-      <div class="section-subtitle">Stage 3: Hand–Object Tracking with Sums-of-Gaussians.</div>
-      <div class="stage-row">
-        <img class="stage-media" src="./assets/gif/stage3.gif" alt="Stage 3 animation">
-        <div class="stage-text">
-          We sparsify the dense Gaussian object into a compact Sums-of-Gaussians form and refine both hand and object motion with occlusion-aware tracking and lightweight priors.
-        </div>
-      </div>
-    </div>
+    <p class="figure-caption video-caption">
+      Supplementary video: method overview and results.
+    </p>
 
     <div class="tagline" id="acknowledgements">Acknowledgements.</div>
     <div class="section" style="margin-top: -5px;">

@@ -285,24 +285,25 @@
 
 (function () {
   const button = document.querySelector("#bibtex .bibtex-copy");
+  const label = document.querySelector("#bibtex .bibtex-copy-label");
   const citation = document.querySelector("#bibtex code");
-  if (!button || !citation) return;
+  if (!button || !label || !citation) return;
 
   let resetTimer;
 
   button.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(citation.textContent.trim());
-      button.textContent = "Copied!";
+      label.textContent = "Copied!";
       button.setAttribute("aria-label", "BibTeX citation copied");
     } catch (error) {
-      button.textContent = "Copy failed";
+      label.textContent = "Copy failed";
       button.setAttribute("aria-label", "Failed to copy BibTeX citation");
     }
 
     clearTimeout(resetTimer);
     resetTimer = setTimeout(() => {
-      button.textContent = "Copy";
+      label.textContent = "Copy";
       button.setAttribute("aria-label", "Copy BibTeX citation");
     }, 2000);
   });

@@ -798,7 +798,28 @@ body {
   font-family: 'Courier New', Courier, monospace; /* Same font family as code */
   font-weight: bold;
   font-size: 1.15em; /* Slightly larger than the code text */
-  margin-bottom: 10px; /* Space between title and pre block */
+  .bibtex-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.bibtex-copy {
+  background: transparent;
+  border: 1px solid #f1f1f1;
+  border-radius: 5px;
+  color: #f1f1f1;
+  cursor: pointer;
+  font: inherit;
+  padding: 5px 10px;
+}
+
+.bibtex-copy:hover,
+.bibtex-copy:focus-visible {
+  background: rgba(255, 255, 255, 0.18);
+}
   color: #f1f1f1; /* Ensure it matches the box text color */
 }
 
